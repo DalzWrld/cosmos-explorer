@@ -16,6 +16,12 @@ export function ResultCard({ item }) {
             />
           )}
         </div>
+        <div className="space-y-2 p-4">
+          <Badge variant="nebula">{item.mediaType}</Badge>
+          <h3 className="line-clamp-2 font-display text-sm font-semibold text-starlight">
+            {item.title}
+          </h3>
+        </div>
       </Card>
     </Link>
   )
