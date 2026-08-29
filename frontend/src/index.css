@@ -3,7 +3,90 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Cosmos Explorer palette */
+  --color-void: #0a0912;
+  --color-panel: #14122a;
+  --color-panel-raised: #1c1a3a;
+  --color-panel-border: #2a2750;
+  --color-nebula: #7c4dff;
+  --color-nebula-soft: #a480ff;
+  --color-comet: #d4a13d;
+  --color-hazard: #ff9f45;
+  --color-starlight: #edebfa;
+  --color-dust: #8783a6;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-panel-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-starlight);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(124, 77, 255, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 60%, rgba(77, 216, 199, 0.06), transparent 45%),
+      radial-gradient(1px 1px at 10% 20%, rgba(237, 235, 250, 0.5) 50%, transparent 50%),
+      radial-gradient(1px 1px at 30% 70%, rgba(237, 235, 250, 0.4) 50%, transparent 50%),
+      radial-gradient(1px 1px at 60% 15%, rgba(237, 235, 250, 0.5) 50%, transparent 50%),
+      radial-gradient(1px 1px at 80% 45%, rgba(237, 235, 250, 0.35) 50%, transparent 50%),
+      radial-gradient(1px 1px at 92% 80%, rgba(237, 235, 250, 0.4) 50%, transparent 50%),
+      radial-gradient(1px 1px at 45% 90%, rgba(237, 235, 250, 0.3) 50%, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-comet);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .orbit-ring {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 2px dashed var(--color-nebula-soft);
+    border-top-color: transparent;
+    animation: orbit-spin 1.1s linear infinite;
+  }
+
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
 
 @theme inline {
     --font-heading: var(--font-sans);
