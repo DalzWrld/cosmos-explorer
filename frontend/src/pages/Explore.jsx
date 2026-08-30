@@ -12,4 +12,14 @@ export function Explore() {
   const [query, setQuery] = useState("")
   const [mediaType, setMediaType] = useState(undefined)
   const { results, status, error, search } = useLibrarySearch()
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    search(query, mediaType)
+  }
+
+  function handleMediaTypeChange(next) {
+    setMediaType(next)
+    if (query.trim()) search(query, next)
+  }
 }
