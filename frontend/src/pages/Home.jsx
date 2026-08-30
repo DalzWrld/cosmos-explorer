@@ -27,6 +27,24 @@ export function Home() {
           Space is complicated. Exploring it doesn&rsquo;t have to be.
         </p>
       </div>
+
+      {status === "loading" && <OrbitLoader label="Pulling today's discovery" />}
+      {status === "error" && <ErrorState message={error} />}
+      {status === "success" && apod && <ApodHero apod={apod} />}
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Link
+          to="/explore"
+          className="group rounded-xl border border-panel-border bg-panel p-5 transition-colors hover:border-nebula/50"
+        >
+          <p className="font-display font-semibold text-starlight group-hover:text-nebula-soft">
+            Explore the archive &rarr;
+          </p>
+          <p className="mt-1 text-sm text-dust">
+            Search NASA&rsquo;s image and video library for anything that catches your curiosity.
+          </p>
+        </Link>
+      </div>
     </div>
   )
 }
