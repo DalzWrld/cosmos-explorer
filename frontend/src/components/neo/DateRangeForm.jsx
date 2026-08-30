@@ -11,3 +11,13 @@ function addDaysISO(days) {
   date.setDate(date.getDate() + days)
   return date.toISOString().slice(0, 10)
 }
+
+export function DateRangeForm({ onSearch }) {
+  const [startDate, setStartDate] = useState(todayISO())
+  const [endDate, setEndDate] = useState(addDaysISO(6))
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    onSearch(startDate, endDate)
+  }
+}
