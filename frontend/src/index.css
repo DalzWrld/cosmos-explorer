@@ -79,12 +79,6 @@
     border-top-color: transparent;
     animation: orbit-spin 1.1s linear infinite;
   }
-
-  @keyframes orbit-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
 }
 
 
