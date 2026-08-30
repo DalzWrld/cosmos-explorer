@@ -16,5 +16,16 @@ export function useApod(date) {
         setData(result)
         setStatus("success")
       })
+      .catch((err) => {
+        if (cancelled) return
+        setError(err.message)
+        setStatus("error")
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [date])
+
+  return { data, status, error }
 }
