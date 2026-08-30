@@ -22,4 +22,13 @@ export function Explore() {
     setMediaType(next)
     if (query.trim()) search(query, next)
   }
+
+  return (
+    <div className="mx-auto max-w-6xl space-y-6 px-5 py-10">
+      <div className="space-y-1">
+        <h1 className="font-display text-2xl font-semibold">Explore</h1>
+        <p className="text-dust">What are you curious about?</p>
+      </div>
+    </div>
+  )
 }
