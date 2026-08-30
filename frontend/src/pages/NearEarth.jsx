@@ -14,4 +14,11 @@ function addDaysISO(days) {
   return date.toISOString().slice(0, 10)
 }
 
-export function NearEarth() {}
+export function NearEarth() {
+  const { data, status, error, search } = useNeoFeed()
+
+  useEffect(() => {
+    search(todayISO(), addDaysISO(6))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+}
