@@ -35,6 +35,19 @@ export function DateRangeForm({ onSearch }) {
           onChange={(e) => setStartDate(e.target.value)}
         />
       </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="end-date" className="text-xs text-dust">
+          To
+        </label>
+        <Input
+          id="end-date"
+          type="date"
+          value={endDate}
+          min={startDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </div>
+      <Button type="submit">Search</Button>
     </form>
   )
 }
