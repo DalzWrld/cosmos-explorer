@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Search } from "lucide-react"
-import { useLibrarySearch } from "@/hooks/useLibrarySearch"
+import { useLibrarySearch } from "@/hooks/useLibraryService"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { MediaTypeTabs } from "@/components/explore/MediaTypeTabs"
