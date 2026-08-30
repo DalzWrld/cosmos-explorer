@@ -44,6 +44,17 @@ export function Discovery() {
             {item.dateCreated && <Badge>{item.dateCreated.slice(0, 10)}</Badge>}
             {item.center && <Badge>{item.center}</Badge>}
           </div>
+          <h1 className="font-display text-2xl font-semibold">{item.title}</h1>
+          <p className="leading-relaxed text-dust">{item.description}</p>
+          {item.keywords?.length > 0 && (
+            <div className="flex flex-wrap gap-2 pt-2">
+              {item.keywords.map((keyword) => (
+                <Badge key={keyword} variant="comet">
+                  {keyword}
+                </Badge>
+              ))}
+            </div>
+          )}
         </article>
       )}
     </div>
