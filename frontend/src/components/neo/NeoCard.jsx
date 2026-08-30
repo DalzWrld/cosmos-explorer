@@ -37,6 +37,16 @@ export function NeoCard({ neo }) {
             {formatNumber(approach.relative_velocity.kilometers_per_hour / 3600)} km/s
           </p>
         </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-wide text-dust/70">Miss distance</p>
+          <p className="text-starlight">
+            {formatNumber(approach.miss_distance.kilometers)} km
+          </p>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-wide text-dust/70">Approach date</p>
+          <p className="text-starlight">{approach.close_approach_date}</p>
+        </div>
       </CardContent>
     </Card>
   )
