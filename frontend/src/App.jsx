@@ -8,7 +8,10 @@ import { NearEarth } from "@/pages/NearEarth"
 
 function App() {
   return (
-    <div></div>
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <Footer />
+    </div>
   )
 }
 
