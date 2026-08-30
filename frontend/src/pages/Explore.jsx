@@ -50,12 +50,19 @@ export function Explore() {
           Try &ldquo;Nebula&rdquo;, &ldquo;Artemis&rdquo;, or &ldquo;Saturn&rdquo; to get started.
         </p>
       )}
-      {status === "loading" && <OrbitLoader label="Searching the archive" />}
+      {status === "loading" && <OrbitLoader label="Searching the archive..." />}
       {status === "error" && <ErrorState message={error} onRetry={() => search(query, mediaType)} />}
       {status === "empty" && (
         <p className="py-16 text-center text-dust">
           No results for &ldquo;{query}&rdquo;. Try a different term.
         </p>
+      )}
+      {status === "success" && (
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          {results.map((item) => (
+            <ResultCard key={item.id} item={item} />
+          ))}
+        </div>
       )}
     </div>
   )
