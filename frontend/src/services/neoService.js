@@ -17,4 +17,14 @@ export async function getNeoFeed(startDate, endDate) {
   })
 
   const data = await apiRequest(`${BASE_URL}?${params.toString()}`)
+
+  // NASA nests results by date; flatten into one sorted list for the UI.
+  const objects = Object.values(data.near_earth_objects || {}).flat()
+  objects.sort(
+    (a, b) =>
+      new Date(a.close_approach_data[0]?.close_approach_date) -
+      new Date(b.close_approach_data[0]?.close_approach_date)
+  )
+
+  return { objects, elementCount: data.element_count ?? objects.length }
 }
