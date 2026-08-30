@@ -29,6 +29,19 @@ export function Explore() {
         <h1 className="font-display text-2xl font-semibold">Explore</h1>
         <p className="text-dust">What are you curious about?</p>
       </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
+        <div className="relative flex-1">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-dust" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search the NASA collection..."
+            className="pl-9"
+          />
+        </div>
+        <Button type="submit">Search</Button>
+      </form>
     </div>
   )
 }
