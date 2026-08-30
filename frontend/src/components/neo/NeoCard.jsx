@@ -22,6 +22,22 @@ export function NeoCard({ neo }) {
           {isHazardous ? "Potentially hazardous" : "Not hazardous"}
         </Badge>
       </CardHeader>
+
+      <CardContent className="grid grid-cols-2 gap-3 font-mono text-xs text-dust sm:grid-cols-4">
+        <div>
+          <p className="text-[10px] uppercase tracking-wide text-dust/70">Diameter</p>
+          <p className="text-starlight">
+            {formatNumber(diameter.estimated_diameter_min)}&ndash;
+            {formatNumber(diameter.estimated_diameter_max)} m
+          </p>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-wide text-dust/70">Velocity</p>
+          <p className="text-starlight">
+            {formatNumber(approach.relative_velocity.kilometers_per_hour / 3600)} km/s
+          </p>
+        </div>
+      </CardContent>
     </Card>
   )
 }
