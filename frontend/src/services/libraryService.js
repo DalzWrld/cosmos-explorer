@@ -26,3 +26,24 @@ export async function searchLibrary(query, mediaType) {
     }
   })
 }
+
+/** Fetch full asset detail (used by the discovery detail page). */
+export async function getLibraryItem(nasaId) {
+  const data = await apiRequest(
+    `https://images-api.nasa.gov/search?nasa_id=${encodeURIComponent(nasaId)}`
+  )
+  const item = data.collection?.items?.[0]
+  if (!item) throw new Error("Discovery not found.")
+
+  const info = item.data?.[0] || {}
+  return {
+    id: info.nasa_id,
+    title: info.title,
+    description: info.description,
+    dateCreated: info.date_created,
+    mediaType: info.media_type,
+    center: info.center,
+    keywords: info.keywords || [],
+    thumbnail: item.links?.[0]?.href,
+  }
+}
