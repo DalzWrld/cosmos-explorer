@@ -19,6 +19,12 @@ const badgeVariants = cva(
         ghost:
           "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
+        nebula:
+          "bg-nebula/25 text-nebula-soft border-nebula/40 [a]:hover:bg-nebula/35",
+        comet:
+          "bg-comet text-void border-comet font-semibold [a]:hover:bg-comet/85",
+        hazard:
+          "bg-hazard/20 text-hazard border-hazard/40 [a]:hover:bg-hazard/30",
       },
     },
     defaultVariants: {
