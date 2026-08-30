@@ -9,3 +9,15 @@ export class ApiError extends Error {
     this.status = status
   }
 }
+
+export async function apiRequest(url, options = {}) {
+  let response
+  try {
+    response = await fetch(url, options)
+  } catch (networkError) {
+    throw new ApiError(
+      "Couldn't reach the server. Check your connection and try again.",
+      0
+    )
+  }
+}
