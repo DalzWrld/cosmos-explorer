@@ -42,6 +42,14 @@ export function Explore() {
         </div>
         <Button type="submit">Search</Button>
       </form>
+
+      <MediaTypeTabs value={mediaType} onChange={handleMediaTypeChange} />
+
+      {status === "idle" && (
+        <p className="py-16 text-center text-dust">
+          Try &ldquo;Nebula&rdquo;, &ldquo;Artemis&rdquo;, or &ldquo;Saturn&rdquo; to get started.
+        </p>
+      )}
     </div>
   )
 }
