@@ -28,6 +28,24 @@ export function NearEarth() {
         <h1 className="font-display text-2xl font-semibold">Near-Earth Objects</h1>
         <p className="text-dust">What came close to Earth this week?</p>
       </div>
+
+      <DateRangeForm onSearch={search} />
+
+      {status === "loading" && <OrbitLoader label="Tracking nearby objects" />}
+      {status === "error" && <ErrorState message={error} />}
+
+      {status === "success" && data && (
+        <>
+          <p className="text-sm text-dust">
+            {data.elementCount} object{data.elementCount === 1 ? "" : "s"} discovered
+          </p>
+          <div className="space-y-3">
+            {data.objects.map((neo) => (
+              <NeoCard key={neo.id} neo={neo} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
