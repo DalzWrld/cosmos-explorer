@@ -20,4 +20,28 @@ export async function apiRequest(url, options = {}) {
       0
     )
   }
+
+  if (!response.ok) {
+    let detail = ""
+    try {
+      const body = await response.json()
+      detail = body?.error?.message || body?.msg || ""
+    } catch {
+      // response wasn't JSON, ignore
+    }
+
+    if (response.status === 429) {
+      throw new ApiError(
+        "NASA's API rate limit was hit. Try again in a few minutes.",
+        response.status
+      )
+    }
+
+    throw new ApiError(
+      detail || `Request failed with status ${response.status}.`,
+      response.status
+    )
+  }
+
+  return response.json()
 }
