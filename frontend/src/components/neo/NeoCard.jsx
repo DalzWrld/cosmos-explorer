@@ -5,4 +5,23 @@ function formatNumber(value) {
   return Number(value).toLocaleString(undefined, { maximumFractionDigits: 1 })
 }
 
-export function NeoCard({ neo }) {}
+export function NeoCard({ neo }) {
+  const approach = neo.close_approach_data[0]
+  const diameter = neo.estimated_diameter.meters
+  const isHazardous = neo.is_potentially_hazardous_asteroid
+
+  return (
+    <Card
+      className={
+        isHazardous ? "border-l-4 border-l-hazard" : "border-l-4 border-l-panel-border"
+      }
+    >
+      <CardHeader className="flex-row items-start justify-between gap-2 space-y-0">
+        <CardTitle className="text-base">{neo.name.replace(/[()]/g, "")}</CardTitle>
+        <Badge variant={isHazardous ? "hazard" : "comet"}>
+          {isHazardous ? "Potentially hazardous" : "Not hazardous"}
+        </Badge>
+      </CardHeader>
+    </Card>
+  )
+}
