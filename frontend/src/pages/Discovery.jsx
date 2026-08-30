@@ -30,6 +30,22 @@ export function Discovery() {
       <Link to="/explore" className="inline-flex items-center gap-1.5 text-sm text-dust hover:text-starlight">
         <ArrowLeft className="size-4" /> Back to Explore
       </Link>
+
+      {status === "loading" && <OrbitLoader label="Loading discovery..." />}
+      {status === "error" && <ErrorState message={error} />}
+
+      {status === "success" && item && (
+        <article className="space-y-4">
+          <div className="overflow-hidden rounded-2xl border border-panel-border bg-panel">
+            <img src={item.thumbnail} alt={item.title} className="w-full object-cover" />
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="nebula">{item.mediaType}</Badge>
+            {item.dateCreated && <Badge>{item.dateCreated.slice(0, 10)}</Badge>}
+            {item.center && <Badge>{item.center}</Badge>}
+          </div>
+        </article>
+      )}
     </div>
   )
 }
