@@ -24,4 +24,12 @@ export function Discovery() {
         setStatus("error")
       })
   }, [id])
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-6 px-5 py-10">
+      <Link to="/explore" className="inline-flex items-center gap-1.5 text-sm text-dust hover:text-starlight">
+        <ArrowLeft className="size-4" /> Back to Explore
+      </Link>
+    </div>
+  )
 }
