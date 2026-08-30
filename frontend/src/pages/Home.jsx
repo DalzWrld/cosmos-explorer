@@ -20,6 +20,12 @@ export function Home() {
             </span>
           ))}
         </div>
+        <h1 className="font-display text-3xl font-semibold sm:text-4xl">
+          Discover what&rsquo;s beyond our world.
+        </h1>
+        <p className="mx-auto max-w-xl text-dust">
+          Space is complicated. Exploring it doesn&rsquo;t have to be.
+        </p>
       </div>
     </div>
   )
