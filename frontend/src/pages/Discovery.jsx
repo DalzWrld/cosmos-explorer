@@ -11,4 +11,17 @@ export function Discovery() {
   const [item, setItem] = useState(null)
   const [status, setStatus] = useState("loading")
   const [error, setError] = useState(null)
+
+  useEffect(() => {
+    setStatus("loading")
+    getLibraryItem(id)
+      .then((result) => {
+        setItem(result)
+        setStatus("success")
+      })
+      .catch((err) => {
+        setError(err.message)
+        setStatus("error")
+      })
+  }, [id])
 }
