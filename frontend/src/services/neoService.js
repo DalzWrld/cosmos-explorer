@@ -8,3 +8,13 @@ const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
  * @param {string} startDate - YYYY-MM-DD
  * @param {string} endDate - YYYY-MM-DD
  */
+
+export async function getNeoFeed(startDate, endDate) {
+  const params = new URLSearchParams({
+    start_date: startDate,
+    end_date: endDate,
+    api_key: API_KEY,
+  })
+
+  const data = await apiRequest(`${BASE_URL}?${params.toString()}`)
+}
