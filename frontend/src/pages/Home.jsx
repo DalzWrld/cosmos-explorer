@@ -44,6 +44,17 @@ export function Home() {
             Search NASA&rsquo;s image and video library for anything that catches your curiosity.
           </p>
         </Link>
+        <Link
+          to="/near-earth"
+          className="group rounded-xl border border-panel-border bg-panel p-5 transition-colors hover:border-nebula/50"
+        >
+          <p className="font-display font-semibold text-starlight group-hover:text-nebula-soft">
+            What&rsquo;s near Earth? &rarr;
+          </p>
+          <p className="mt-1 text-sm text-dust">
+            See which asteroids are making a close approach this week.
+          </p>
+        </Link>
       </div>
     </div>
   )
