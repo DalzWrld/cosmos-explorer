@@ -19,3 +19,19 @@ class User(db.Model):
     collections = db.relationship(
         "Collection", back_populates="user", cascade="all, delete-orphan"
     )
+
+    def set_password(self, plaintext_password):
+        self.password_hash = bcrypt.generate_password_hash(plaintext_password).decode(
+            "utf-8"
+        )
+
+    def check_password(self, plaintext_password):
+        return bcrypt.check_password_hash(self.password_hash, plaintext_password)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "created_at": self.created_at.isoformat(),
+        }
