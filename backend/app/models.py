@@ -84,3 +84,15 @@ class SavedDiscovery(db.Model):
     saved_at = db.Column(db.DateTime(timezone=True), default=utcnow, nullable=False)
 
     collection = db.relationship("Collection", back_populates="saved_discoveries")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "collection_id": self.collection_id,
+            "source": self.source,
+            "source_id": self.source_id,
+            "title": self.title,
+            "note": self.note,
+            "thumbnail_url": self.thumbnail_url,
+            "saved_at": self.saved_at.isoformat(),
+        }
