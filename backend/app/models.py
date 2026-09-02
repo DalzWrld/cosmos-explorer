@@ -35,3 +35,18 @@ class User(db.Model):
             "email": self.email,
             "created_at": self.created_at.isoformat(),
         }
+
+
+class Collection(db.Model):
+    __tablename__ = "collections"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    created_at = db.Column(db.DateTime(timezone=True), default=utcnow, nullable=False)
+
+    user = db.relationship("User", back_populates="collections")
+    saved_discoveries = db.relationship(
+        "SavedDiscovery", back_populates="collection", cascade="all, delete-orphan"
+    )
