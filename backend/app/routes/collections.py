@@ -43,3 +43,14 @@ def create_collection():
     db.session.commit()
 
     return jsonify(collection.to_dict()), 201
+
+@collections_bp.get("/<int:collection_id>")
+def get_collection(collection_id):
+    collection = Collection.query.filter_by(
+        id=collection_id, user_id=DEV_USER_ID
+    ).first()
+
+    if collection is None:
+        return jsonify({"error": "Collection not found"}), 404
+
+    return jsonify(collection.to_dict(include_discoveries=True))
