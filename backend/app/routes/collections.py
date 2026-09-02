@@ -54,3 +54,24 @@ def get_collection(collection_id):
         return jsonify({"error": "Collection not found"}), 404
 
     return jsonify(collection.to_dict(include_discoveries=True))
+
+@collections_bp.patch("/<int:collection_id>")
+def update_collection(collection_id):
+    collection = Collection.query.filter_by(
+        id=collection_id, user_id=DEV_USER_ID
+    ).first()
+
+    if collection is None:
+        return jsonify({"error": "Collection not found"}), 404
+
+    data = request.get_json(silent=True) or {}
+    if "name" in data:
+        name = (data["name"] or "").strip()
+        if not name:
+            return jsonify({"error": "name cannot be empty"}), 400
+        collection.name = name
+    if "description" in data:
+        collection.description = data["description"]
+
+    db.session.commit()
+    return jsonify(collection.to_dict())
