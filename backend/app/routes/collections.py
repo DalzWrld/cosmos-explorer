@@ -27,3 +27,19 @@ def list_collections():
             "total_pages": paginated.pages,
         }
     )
+
+@collections_bp.post("")
+def create_collection():
+    data = request.get_json(silent=True) or {}
+    name = (data.get("name") or "").strip()
+
+    if not name:
+        return jsonify({"error": "name is required"}), 400
+
+    collection = Collection(
+        user_id=DEV_USER_ID, name=name, description=data.get("description")
+    )
+    db.session.add(collection)
+    db.session.commit()
+
+    return jsonify(collection.to_dict()), 201
