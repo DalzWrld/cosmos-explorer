@@ -65,3 +65,22 @@ class Collection(db.Model):
                 d.to_dict() for d in self.saved_discoveries
             ]
         return data
+
+
+class SavedDiscovery(db.Model):
+    __tablename__ = "saved_discoveries"
+
+    VALID_SOURCES = ("apod", "neo", "library")
+
+    id = db.Column(db.Integer, primary_key=True)
+    collection_id = db.Column(
+        db.Integer, db.ForeignKey("collections.id"), nullable=False
+    )
+    source = db.Column(db.String(20), nullable=False)
+    source_id = db.Column(db.String(120), nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    note = db.Column(db.Text, nullable=True)
+    thumbnail_url = db.Column(db.String(500), nullable=True)
+    saved_at = db.Column(db.DateTime(timezone=True), default=utcnow, nullable=False)
+
+    collection = db.relationship("Collection", back_populates="saved_discoveries")
