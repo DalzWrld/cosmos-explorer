@@ -50,3 +50,18 @@ class Collection(db.Model):
     saved_discoveries = db.relationship(
         "SavedDiscovery", back_populates="collection", cascade="all, delete-orphan"
     )
+
+    def to_dict(self, include_discoveries=False):
+        data = {
+            "id": self.id,
+            "user_id": self.user_id,
+            "name": self.name,
+            "description": self.description,
+            "created_at": self.created_at.isoformat(),
+            "discovery_count": len(self.saved_discoveries),
+        }
+        if include_discoveries:
+            data["saved_discoveries"] = [
+                d.to_dict() for d in self.saved_discoveries
+            ]
+        return data
