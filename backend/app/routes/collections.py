@@ -75,3 +75,16 @@ def update_collection(collection_id):
 
     db.session.commit()
     return jsonify(collection.to_dict())
+
+@collections_bp.delete("/<int:collection_id>")
+def delete_collection(collection_id):
+    collection = Collection.query.filter_by(
+        id=collection_id, user_id=DEV_USER_ID
+    ).first()
+
+    if collection is None:
+        return jsonify({"error": "Collection not found"}), 404
+
+    db.session.delete(collection)
+    db.session.commit()
+    return "", 204
