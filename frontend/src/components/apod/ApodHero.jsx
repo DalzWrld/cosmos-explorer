@@ -1,3 +1,4 @@
+import { Play } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export function ApodHero({ apod }) {
@@ -5,21 +6,25 @@ export function ApodHero({ apod }) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-panel-border bg-panel">
-      <div className="aspect-video w-full bg-panel-raised">
-        {isVideo ? (
-          <iframe
-            src={apod.url}
-            title={apod.title}
-            className="h-full w-full"
-            allowFullScreen
-          />
-        ) : (
-          <img
-            src={apod.hdurl || apod.url}
-            alt={apod.title}
-            className="h-full w-full object-cover"
-            loading="eager"
-          />
+      <div className="relative aspect-video w-full bg-panel-raised">
+        <img
+          src={apod.hdurl || apod.url}
+          alt={apod.title}
+          className="h-full w-full object-cover"
+          loading="eager"
+        />
+        {/* NASA's current API only provides a poster image for video days,
+            not an embeddable video URL, so we link out instead of embedding. */}
+        {isVideo && (
+          <a
+            href={apod.permalink}
+            target="_blank"
+            rel="noreferrer"
+            className="absolute inset-0 flex items-center justify-center gap-2 bg-void/50 text-starlight transition-colors hover:bg-void/60"
+          >
+            <Play className="size-10" />
+            <span className="font-display text-sm font-semibold">Watch on NASA</span>
+          </a>
         )}
       </div>
 
